@@ -35,7 +35,7 @@ function init(smap) {
         fileName: loc.source || e.message,
         columnNumber: loc.column || row.columnNumber,
         lineNumber: loc.line || row.lineNumber,
-        functionName: `${loc.name}@${loc.source} ${loc.line}:${loc.column}` //next best thing without a consistent function name
+        functionName: loc.source ? `${loc.name}@${loc.source} ${loc.line}:${loc.column}` : (row.functionName || '') //next best thing without a consistent function name
       };
     })));
     // And then re-throw the exception with the original handler
