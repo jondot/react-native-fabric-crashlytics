@@ -32,10 +32,11 @@ function init(smap) {
     StackTrace.fromError(e).then((x)=>Crashlytics.recordCustomExceptionName(e.message, e.message, x.map(row=>{
       const loc = mapper(row);
       return {
-        fileName: loc.source || e.message,
+        fileName: loc.source || row.fileName,
         columnNumber: loc.column || row.columnNumber,
         lineNumber: loc.line || row.lineNumber,
-        functionName: loc.source ? `${loc.name}@${loc.source} ${loc.line}:${loc.column}` : (row.functionName || '') //next best thing without a consistent function name
+        functionName: loc.source ? `${loc.name}@${loc.source} ${loc.line}:${loc.column}` :
+        `${(row.source || 'unknown_func')}`, //next best thing without a consistent function name
       };
     })));
     // And then re-throw the exception with the original handler
