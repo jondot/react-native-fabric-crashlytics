@@ -59,6 +59,8 @@ crashload()
 And we'll need to signal Xcode to include such a file, so you'll need to create the same
 "missing" file as `main.jsbundle` in your Xcode project and name it `sourcemap.js`.
 
+For Android you will need to replace `RNFS.MainBundlePath` with `RNFS.DocumentDirectoryPath`.
+
 To use `RNFS`, you will need to install and link [`react-native-fs`](https://github.com/johanneslumpe/react-native-fs),
 if you don't already have that in your project.
 
